@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class Farst {
 	private static String m_formula;
-	private static int m_idx;//ŒvZ‚ğ‚·‚é‚Æ‚«‚ÉAŸ‚É“Ç‚İ‚ŞŠ‚É‚Â‚¢‚Ä‚ÌƒCƒ“ƒfƒbƒNƒX
+	private static int m_idx;//è¨ˆç®—ã‚’ã™ã‚‹ã¨ãã«ã€æ¬¡ã«èª­ã¿è¾¼ã‚€æ‰€ã«ã¤ã„ã¦ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 	
 	private static double GetValue() {
 		double temp = 0;
@@ -24,7 +24,7 @@ public class Farst {
 		return temp;
 	}
 	private static double GetArgumentValue() {
-		//Š„‚èZ‚ÌAŠ„‚é”‚ª0‚É‚È‚Á‚½‚è‚µ‚½‚çjava‚ª—áŠO‚ğo‚µ‚Ä‚­‚ê‚é‚©‚ç‚»‚±‚Í‰½‚àˆÓ¯‚µ‚È‚¢ô
+		//å‰²ã‚Šç®—ã®ã€å‰²ã‚‹æ•°ãŒ0ã«ãªã£ãŸã‚Šã—ãŸã‚‰javaãŒä¾‹å¤–ã‚’å‡ºã—ã¦ãã‚Œã‚‹ã‹ã‚‰ãã“ã¯ä½•ã‚‚æ„è­˜ã—ãªã„â™ª
 		double seki = 1, syou = 1;
 		if (m_formula.charAt(m_idx) == '-')seki = -1;
 		if (m_formula.charAt(m_idx) == '+' || m_formula.charAt(m_idx) == '-')++m_idx;
@@ -32,19 +32,19 @@ public class Farst {
 			if (m_formula.charAt(m_idx) == '+' || m_formula.charAt(m_idx) == '-' || m_formula.charAt(m_idx) == ')') break;
 			if (m_formula.charAt(m_idx) == '*')++m_idx;
 			if (m_formula.charAt(m_idx) != '/') seki *= GetValue();
-			else {//Š|‚¯Z
+			else {//æ›ã‘ç®—
 				++m_idx;
 				syou *= GetValue();
 			}
 		}
-		return seki / syou;//ÅI“I‚È€‚Ì’l
+		return seki / syou;//æœ€çµ‚çš„ãªé …ã®å€¤
 	}
 
 	private static double GetAns() {
 		double ans = 0;
 		for (; m_idx < m_formula.length(); /*m_idx++*/) {
 			ans += GetArgumentValue();
-			if (m_idx < m_formula.length()&&m_formula.charAt(m_idx) == ')') {//‚©‚Á‚±‚Ì•Â‚¶‚é‚â‚Â‚ª—ˆ‚½‚çˆê‚Â‚Ì®‚ÌŒvZ‚ÍI—¹
+			if (m_idx < m_formula.length()&&m_formula.charAt(m_idx) == ')') {//ã‹ã£ã“ã®é–‰ã˜ã‚‹ã‚„ã¤ãŒæ¥ãŸã‚‰ä¸€ã¤ã®å¼ã®è¨ˆç®—ã¯çµ‚äº†
 				++m_idx;
 				break;
 			}
@@ -53,7 +53,7 @@ public class Farst {
 	}
 	
 	private static boolean Check() {
-		//‚±‚ÌŠÖ”‚É‚ÍA"”š.”š.”š"‚Ì‚æ‚¤‚Èê‡‚ğ‚Æ‚èÈ‚­‚±‚Æ‚ª‚Å‚«‚È‚¢‚Æ‚¢‚¤ƒoƒO‚ğ‚Á‚Ä‚¢‚é!!!!
+		//ã“ã®é–¢æ•°ã«ã¯ã€"æ•°å­—.æ•°å­—.æ•°å­—"ã®ã‚ˆã†ãªå ´åˆã‚’ã¨ã‚Šçœãã“ã¨ãŒã§ããªã„ã¨ã„ã†ãƒã‚°ã‚’æŒã£ã¦ã„ã‚‹!!!!
 		
 		int farst = -1;
 		int num = 0;
@@ -65,31 +65,31 @@ public class Farst {
 		int KakkoC=0;
 		
 		for(int i=0;i<m_formula.length();i++){
-			if(Character.isDigit(m_formula.charAt(i))) {//”š
+			if(Character.isDigit(m_formula.charAt(i))) {//æ•°å­—
 				if(befor==kakkof) return false;
 				befor=num;
-			}else if(m_formula.charAt(i)=='.') {//¬”“_
+			}else if(m_formula.charAt(i)=='.') {//å°æ•°ç‚¹
 				if(befor!=num) return false;
 				befor=ten;
-			}else if(m_formula.charAt(i)=='(') {//ƒJƒbƒRn
+			}else if(m_formula.charAt(i)=='(') {//ã‚«ãƒƒã‚³å§‹
 				if(befor==kakkof||befor==ten||befor==num) return false;
 				befor=kakkos;
 				++KakkoC;
-			}else if(m_formula.charAt(i)==')') {//ƒJƒbƒRI
+			}else if(m_formula.charAt(i)==')') {//ã‚«ãƒƒã‚³çµ‚
 				if(befor!=num) return false;
 				befor=kakkof;
-				if(--KakkoC<0) return false;//ƒJƒbƒR‚ÌƒJƒEƒ“ƒg‚ª•‰”‚É‚È‚Á‚½‚ç‚»‚Ì“_‚Å–â‘è‚ ‚è
+				if(--KakkoC<0) return false;//ã‚«ãƒƒã‚³ã®ã‚«ã‚¦ãƒ³ãƒˆãŒè² æ•°ã«ãªã£ãŸã‚‰ãã®æ™‚ç‚¹ã§å•é¡Œã‚ã‚Š
 			}else if(m_formula.charAt(i)=='+'||m_formula.charAt(i)=='-'||
-						m_formula.charAt(i)=='*'||m_formula.charAt(i)=='/')	{//‰‰Zq
+						m_formula.charAt(i)=='*'||m_formula.charAt(i)=='/')	{//æ¼”ç®—å­
 				if(befor==ten) return false;
 				befor=enzansi;
-			}else//‘z’è‚³‚ê‚ê‚È‚¢•¶ši‚»‚Ì“_‚ÅƒAƒEƒgIj 
+			}else//æƒ³å®šã•ã‚Œã‚Œãªã„æ–‡å­—ï¼ˆãã®æ™‚ç‚¹ã§ã‚¢ã‚¦ãƒˆï¼ï¼‰ 
 				return false;
 		}
-		//ÅI”»’è
+		//æœ€çµ‚åˆ¤å®š
 		if(befor==ten||befor==kakkos||befor==enzansi)return false;
-		if(KakkoC!=0)return false;//ÅI“I‚ÉƒJƒR‚ÌƒJƒEƒ“ƒg‚ª0o‚È‚¢ê‡A‚»‚Ì“_‚Å–â‘è‚ ‚è
-		//‘S‚Ä‚ğ’Ê‰ß‚µ‚½ê‡‚Í–â‘è‚È‚µ(ƒoƒO‚ğÈ‚­)
+		if(KakkoC!=0)return false;//æœ€çµ‚çš„ã«ã‚«ã‚³ã®ã‚«ã‚¦ãƒ³ãƒˆãŒ0å‡ºãªã„å ´åˆã€ãã®æ™‚ç‚¹ã§å•é¡Œã‚ã‚Š
+		//å…¨ã¦ã‚’é€šéã—ãŸå ´åˆã¯å•é¡Œãªã—(ãƒã‚°ã‚’çœã)
 		return true;
 	}
 	
@@ -101,14 +101,14 @@ public class Farst {
                 String temp;
 		try {
 			while(IsLoop) {
-				System.out.println("ŒvZ®‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢ô\ng—p‰Â”\‚È‚à‚Ì‚ÍA‚·‚×‚Ä”¼Šp‚ÅA”šA‚©‚Á‚±A‰‰Zqi+,-,*,/j‚Å‚·\n");
+				System.out.println("è¨ˆç®—å¼ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„â™ª\nä½¿ç”¨å¯èƒ½ãªã‚‚ã®ã¯ã€ã™ã¹ã¦åŠè§’ã§ã€æ•°å­—ã€ã‹ã£ã“ã€æ¼”ç®—å­ï¼ˆ+,-,*,/ï¼‰ã§ã™\n");
 				m_formula = br.readLine();
-		        if(Check()) {//‚»‚êˆÈ~‚ğÀs
+		        if(Check()) {//ãã‚Œä»¥é™ã‚’å®Ÿè¡Œ
 		            m_idx=0;
 		            AnsValue = GetAns();
-		            System.out.println("Œ‹‰Ê‚Í"+AnsValue+"‚Å‚·I\n");
+		            System.out.println("çµæœã¯"+AnsValue+"ã§ã™ï¼\n");
 		            while(true) {
-			            System.out.println("‚±‚Ì‚Ü‚Ü‘±‚¯‚é‚È‚çY‚ğA‘±‚¯‚È‚¢‚Ì‚È‚çN‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢I\n");
+			            System.out.println("ã“ã®ã¾ã¾ç¶šã‘ã‚‹ãªã‚‰Yã‚’ã€ç¶šã‘ãªã„ã®ãªã‚‰Nã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ï¼\n");
 		            	temp = br.readLine();
 		            	if(temp.equals("Y")) break;
 		            	else if(temp.equals("N")) {
@@ -118,21 +118,21 @@ public class Farst {
 		            	System.out.println(temp);
 		            }
 		        }else
-		        	throw(new IllegalStateException());//—áŠO
+		        	throw(new IllegalStateException());//ä¾‹å¤–
 			}
 		}
 		catch(IOException e) {
-			System.out.println("‚æ‚­‚í‚©‚ç‚È‚¢–â‘è‚ª”­¶‚µ‚Ü‚µ‚½I\n");
+			System.out.println("ã‚ˆãã‚ã‹ã‚‰ãªã„å•é¡ŒãŒç™ºç”Ÿã—ã¾ã—ãŸï¼\n");
 			System.exit(0);
 		}
-		catch(ArithmeticException e) {//Š„‚é”‚ª0‚É‚È‚Á‚Ä‚µ‚Ü‚Á‚½
-			System.out.println("Š„‚èZ‚ÅAŠ„‚ç‚ê‚é”‚ª0‚É‚È‚Á‚Ä‚µ‚Ü‚¢‚Ü‚µ‚½I\nˆÙí‚Å‚·II\n");
+		catch(ArithmeticException e) {//å‰²ã‚‹æ•°ãŒ0ã«ãªã£ã¦ã—ã¾ã£ãŸ
+			System.out.println("å‰²ã‚Šç®—ã§ã€å‰²ã‚‰ã‚Œã‚‹æ•°ãŒ0ã«ãªã£ã¦ã—ã¾ã„ã¾ã—ãŸï¼\nç•°å¸¸ã§ã™ï¼ï¼\n");
 		}
-		catch(IllegalStateException e) {//•¶–@‚ªˆá‚¤
-			System.out.println("ŒvZ®‚Ì•¶–@‚ª•s³‚Å‚·IŠm‚©‚ß‚Ä‚İ‚Ä‚­‚¾‚³‚¢\n");
+		catch(IllegalStateException e) {//æ–‡æ³•ãŒé•ã†
+			System.out.println("è¨ˆç®—å¼ã®æ–‡æ³•ãŒä¸æ­£ã§ã™ï¼ç¢ºã‹ã‚ã¦ã¿ã¦ãã ã•ã„\n");
 		}		
-		finally{//‚±‚±‚É—ˆ‚é‚Ü‚Å‚É–â‘è‚Í‚·‚×‚Ä‰ğŒˆ‚µ‚Ä‚¢‚é‚Æ‚¢‚¤‘O’ñ‚Å‚¢‚éi‚½‚¾’P‚Ég‚¢‚½‚¢‚¾‚¯j
-			System.out.println("‚±‚ê‚ÅI—¹‚µ‚Ü‚·\n");
+		finally{//ã“ã“ã«æ¥ã‚‹ã¾ã§ã«å•é¡Œã¯ã™ã¹ã¦è§£æ±ºã—ã¦ã„ã‚‹ã¨ã„ã†å‰æã§ã„ã‚‹ï¼ˆãŸã å˜ã«ä½¿ã„ãŸã„ã ã‘ï¼‰
+			System.out.println("ã“ã‚Œã§çµ‚äº†ã—ã¾ã™\n");
 		}
 		return;
 	}
