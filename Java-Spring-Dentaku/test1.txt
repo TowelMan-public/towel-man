@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<link rel="stylesheet" href="style.css" type="text/css">
+		<title>簡易的な電卓</title>
+		<h1>簡易的な電卓</h1>
+		<p>このサイトは簡易的にかっこを使った計算をするためのサイトです</p>
+	</head>
+	<body>
+		<div class = "Main">
+			<div class = "infomation">
+				<ul>
+					<li>大原則としてすべて半角で</li>
+					<li>使える演算子は+-*/</li>
+					<li>XのY乗はX^(Y)と表す</li>
+					<li>三角関数はsin(X)のようにし、Xはラジアン</li>
+					<li>使える三角関数はsin、cos、tanである</li>
+				</ul>
+			</div>
+		</div>
+		<div class = "Form" >
+			<form method="get" action="/Dentaku/do"  th:object="${CustomerForm}">
+				<h2>Ans.

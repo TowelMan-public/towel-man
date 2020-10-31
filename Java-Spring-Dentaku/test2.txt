@@ -1,0 +1,8 @@
+﻿</h2>
+				<h2>式</h2>
+				<input type = "text" value = "Formula" name = "Formula">
+				<input type = "submit" value = "do">
+			</form>
+		</div>
+	</body>
+</html>
