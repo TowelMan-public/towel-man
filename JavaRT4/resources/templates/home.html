@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html lang="jp" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>CRUDのRのやつ</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<h1>入荷</h1> <p><p th:text= "${stock}" /></p>
+		<form method="post" th:action="@{stock}" th:object="${StockForm}">
+			<p>商品番号: <input type="text" name="id" /></p>
+			<p>数: <input type="text" name="count" /></p>
+			<p><input type="submit" value="入荷" /></p>
+		</form>
+		<h1>出荷</h1> <p><p th:text= "${shipment}" /></p>
+		<form method="post" th:action="@{shipment}" th:object="${ShipmentForm}">
+			<p>商品番号: <input type="text" name="id" /></p>
+			<p>数: <input type="text" name="count" /></p>
+			<p><input type="submit" value="出荷" /></p>
+		</form>
+		<h1>検索</h1>
+		<form method="get" th:action="@{result}" th:object="${ResultForm}">
+			<p>商品番号: <input type="text" name="productID" /></p>
+			<p>商品名: <input type="text" name="productName" /></p>
+			<p>数: <input type="text" name="count" /></p>
+			<p>分類番号: <input type="text" name="typeID" /></p>
+			<p>分類名: <input type="text" name="typeName" /></p>
+			<p><input type="submit" value="検索" /></p>
+		</form>
+	</body>
+</html>

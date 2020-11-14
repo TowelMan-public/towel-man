@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="jp" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>CRUDのRのやつの結果</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<h1>結果♪</h1>
+		<table class="list">
+		    <tr>
+		      <th>商品ID</th>
+		      <th>商品名</th>
+		      <th>種類ID</th>
+		      <th>種類名</th>
+		      <th>数量</th>
+		    </tr>
+		    <tr th:each="result : ${ResultFormA}" th:object="${result}">
+		      <td th:text="*{productID}"></td>
+		      <td th:text="*{productName}"></td>
+		      <td th:text="*{typeID}"></td>
+		      <td th:text="*{typeName}"></td>
+		      <td th:text="*{count}"></td>
+		    </tr>
+		  </table>
+	</body>
+</html>
